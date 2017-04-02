@@ -1,0 +1,159 @@
+<!DOCTYPE html> 
+<html>
+	
+<head>
+		<title>Prakriti MSIT</title>
+		
+		<meta charset="utf-8">
+		
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		
+		<link rel="stylesheet" href="css/demo.css">
+		<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="css/sky-forms.css">
+		<link rel="stylesheet" href="css/sky-forms-red.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+		<script type="text/javascript" src="js/appb.js"></script>
+		<script type="text/javascript" src="js/controllerb.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	 
+	</head>
+	<body class="bg-red">
+		<div ng-init="formx.showForm=true;formx.sucLog=false" ng-controller='MainForm as formx'  ng-app='PrakritiView' class="body">
+			 
+			<form  ng-if="formx.showForm"  class="sky-form animated bounceInUp">
+				<header>Log In</header>
+					
+				<fieldset>	
+					<h3>Enter Following Details</h3>	
+					<br/>		
+					<div class="row">
+						<section class="col col-6">
+							Password
+							<label class="input">
+								<i class="icon-append icon-user"></i>
+								<input ng-model="formx.Password" type="Password" placeholder="Enter Login Password">
+							</label>
+						</section>
+						<section class="col col-6">
+								Select Event
+							<label class="select">
+							
+								<select   ng-model="formx.SelectedEvent" >
+									
+									<option ng-repeat="entry in formx.Events" ng-value="$index">{{entry.Name}}</option>
+									<option value="15">All</option>
+								</select>
+								<i></i>
+							</label>
+						</section>
+					 
+						 
+					</div>
+				</fieldset>
+				
+				<footer >
+							<center><button type="button" ng-click="formx.ViewData();" class="button">View Data</button></center>
+				</footer>
+			</form>
+
+			<div style="position: absolute; left:10px;" ng-if="formx.sucLog">
+				<center><h1>{{formx.EventIs}}</h1></center>
+				<br/>
+				
+				<table style="background-color: white; font-weight: 700; color: black;"  class="table table table-bordered table-hover">
+					<thead>
+						<tr>
+						 
+							<th>Registrar Name</th>
+							<th>Team Name</th>
+							<th>Team Size</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Event</th>
+							<th>Amount</th>
+							<th>Method</th>
+							<th>Time</th>
+							<th>Confirmed</th>
+							<th>Action</th>
+					    </tr>
+ 					</thead>
+  					<tbody>
+  						<tr style="background-color: white; font-weight: 700; color: black;" ng-if='formx.shower[$index]' ng-repeat="base in formx.dataReg">
+  						
+  							<td>{{base.Main}}</td>
+  							<td>{{base.TeamName}}</td>
+  							<td>{{base.TeamSize}}</td>
+  							<td>{{base.Email}}</td>
+  							<td>{{base.Phone}}</td>
+  							<td>{{base.Event}}</td>
+  						
+  							<td>{{base.Pay}}</td>
+  							<td>{{base.PayMethod}}</td>
+  							<td>{{base.Time}}</td>
+  							<td>{{base.confirmed}}</td>
+  							<td></td>
+  						</tr>
+   					 	
+ 					 </tbody>
+				</table>
+
+			<div style="position: absolute; left:10px;" ng-if="formx.AllLog">
+				<center><h1>{{formx.EventIs}}</h1></center>
+				<br/>
+				
+				<table style="background-color: white; font-weight: 700; color: black;"  class="table table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>S.No</th>
+							<th>Registrar Name</th>
+							<th>Team Name</th>
+							<th>Team Size</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Event</th>
+							<th>Amount</th>
+							<th>Method</th>
+							<th>Time</th>
+							<th>Confirmed</th>
+							<th>Action</th>
+					    </tr>
+ 					</thead>
+  					<tbody>
+  						<tr style="background-color: white; font-weight: 700; color: black;"  ng-repeat="base in formx.dataReg">
+  							<td>{{$index}}</td>
+  							<td>{{base.Main}}</td>
+  							<td>{{base.TeamName}}</td>
+  							<td>{{base.TeamSize}}</td>
+  							<td>{{base.Email}}</td>
+  							<td>{{base.Phone}}</td>
+  							<td>{{base.Event}}</td>
+  							<td>{{base.Pay}}</td>
+  							<td>{{base.PayMethod}}</td>
+  							<td>{{base.Time}}</td>
+  							<td>{{base.confirmed}}</td>
+  							<td></td>
+  						</tr>
+   					 	
+ 					 </tbody>
+				</table>
+
+
+				
+			</div>
+			
+		</div>
+	</body>
+
+<!-- Mirrored from voky.com.ua/showcase/sky-forms/examples/demo-order.html? by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Dec 2016 19:48:02 GMT -->
+</html>

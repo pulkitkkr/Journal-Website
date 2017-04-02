@@ -1,0 +1,180 @@
+<!DOCTYPE html> 
+<html>
+	
+<head>
+		<title>Prakriti MSIT</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		
+		<link rel="stylesheet" href="css/demo.css">
+		<link rel="stylesheet" href="css/sky-forms.css">
+		<link rel="stylesheet" href="css/sky-forms-red.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/controller.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	 
+	</head>
+	<body class="bg-green">
+		<div ng-controller='MainForm as formx' ng-init="formx.showForm=true;formx.cashForm=false;formx.paytmForm=false;" ng-app='Prakriti' class="body">
+			<form  ng-if="formx.cashForm"  class="sky-form animated bounceInUp">
+				<header>Registration Successful</header>
+					
+				<fieldset>	
+				 	<center><h2>Thank You {{formx.formdata.UserName}}, We Have Received Rs {{formx.PayAmount}}/- from you, For the event {{formx.Events[formx.formdata.event].Name}}<br/>Your Ticket ID is: {{formx.ticket}}, Keep It Safe for future reference</h2><br/><h3>Note:Keep Screenshot of this Ticket ID for hassleless experience</h3></center>
+				</fieldset>
+				<footer ng-if="formx.end">
+					<button type="button" ng-click="formx.NewReg();" class="button">New Registration</button>
+				</footer>
+
+			</form>	
+			<form  ng-if="formx.paytmForm"  class="sky-form animated bounceInUp">
+				<header>Registration Successfully Initiated</header>
+					
+				<fieldset>	
+				 	<center><h2>Thank You {{formx.formdata.UserName}}, We Have initiated your paytm confirmation Request for Rs {{formx.PayAmount}}/- , For  {{formx.Events[formx.formdata.event].Name}}. You'll Recieve a Confirmation Email on {{formx.formdata.MemDetail[0].Email}} Within 24hrs<br/>Your Ticket ID is: {{formx.ticket}}, Keep It Safe for future reference</h2><br/><h3>Note:Keep Screenshot of this Ticket ID for hassleless experience</h3></center>
+				</fieldset>
+				<footer ng-if="formx.end">
+					<button type="button" ng-click="formx.NewReg();" class="button">New Registration</button>
+				</footer>
+
+			</form>	 
+			<form  ng-if="formx.showForm"  class="sky-form animated bounceInUp">
+				<header>Enva 2016 Event Registration</header>
+					
+				<fieldset>	
+					<h3>Step: 1</h3>	
+					<br/>		
+					<div class="row">
+						<section class="col col-6">
+							Full Name
+							<label class="input">
+								<i class="icon-append icon-user"></i>
+								<input ng-model="formx.formdata.UserName" type="text" placeholder="Full Name">
+							</label>
+						</section>
+						<section class="col col-6">
+								Select Event
+							<label class="select">
+							
+								<select ng-change='formx.formdata.members = 1; formx.AfterMembersDone=false; formx.membersAdded=[1];formx.initializeAgain();'  ng-model="formx.formdata.event" ng-init=''>
+									
+									<option ng-repeat="entry in formx.Events" ng-value="$index">{{entry.Name}}</option>
+								</select>
+								<i></i>
+							</label>
+						</section>
+						<br/>
+						<center><button type="button" ng-click='formx.initialize();' class="button">Next</button></center>
+						<br/>
+						 
+					</div>
+				</fieldset>
+				<fieldset class="animated rubberBand" ng-init='formx.formdata.members = 1;formx.AfterMembersDone=false; formx.membersAdded=[1];' ng-if="formx.initialized">
+					<h3>Step: 2 </h3>
+					<br/>
+					<h3 ng-if='formx.Events[formx.formdata.event].Team'>{{formx.Events[formx.formdata.event].Name}} is a Team Event With Maximum Team Size of {{formx.size.length}}. Please Fill The Details of all Team members.<br/><br/>Note: Single Entry: Rs 20/- and Team Entry: Rs 10/- per Team Member</h3>	
+					<h3 ng-if='!formx.Events[formx.formdata.event].Team'>Note: Single Entry: Rs 20/-</h3>
+					<br/>
+					<div ng-repeat="members in formx.membersAdded"  class="row animated fadeIn">
+						<h3>&nbsp;&nbsp;&nbsp;&nbsp;Team Member : {{$index + 1}} </h3>
+						<br/>
+						<section class="col col-6">
+							<label class="input">
+								<i class="icon-append icon-user"></i>
+								<input ng-model='formx.formdata.MemDetail[$index].Name' type="text" placeholder="Full Name">
+							</label>
+						</section>
+						<section class="col col-6">
+							<label class="input">
+								<i class="icon-append icon-pencil"></i>
+								<input ng-model='formx.formdata.MemDetail[$index].Detail' type="text" placeholder="Detail eg: CSE2 Mor 1st ">
+							</label>
+						</section>
+						<section class="col col-6">
+							<label class="input">
+								<i class="icon-append icon-envelope-alt"></i>
+								<input ng-model='formx.formdata.MemDetail[$index].Email' type="email" placeholder="Email Address">
+							</label>
+						</section>
+						<section class="col col-6">
+							<label class="input">
+								<i class="icon-append icon-phone"></i>
+								<input ng-model='formx.formdata.MemDetail[$index].Phone' type="tel" placeholder="Mobile Number">
+							</label>
+						</section>
+						<br/>
+						
+					</div>	
+					<section class="col col-6">
+						<center><button type="button" ng-click='formx.AddMember();' class="button">Add Team Member</button></center>		 
+					</section>
+						 <center><button type="button" ng-click='formx.AfterMembers();' class="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></center>
+					</section>			
+				</fieldset>
+					
+				<fieldset      class="animated rubberBand" ng-init='formx.paytm=true;formx.formdata.payMethod=-1;formx.cash = false; formx.vba = false;' ng-if="formx.AfterMembersDone">
+
+					<div class="row">
+						<h3>Step: 3</h3>	
+						<br/>						
+						<h3>Total Payable Amount is : Rs {{formx.pricex}}/- X {{formx.formdata.members}} = Rs {{formx.PayAmount}}/-</h3>
+						<br/>
+					</div>
+					<section class="col col-6">
+							Select Payment Method
+							<label class="select">
+								<select ng-change='formx.paymentMethodx();'  ng-model="formx.formdata.payMethod">
+									<option value="-1" disabled>Select Payment Method</option>
+									<option  value="0">PAYTM</option>
+									<option  value="1">Cash</option>
+								</select>
+						 
+							</label>
+					</section>
+					<section class="col col-6">
+						<img  class="animated tada" width="100%" ng-if='formx.paytm' src="http://www.scientiapraecepta.com/img/paytm.jpg"/>
+						<img  class="animated tada" width="100%" ng-if='formx.cash' src="http://www.scientiapraecepta.com/img/cash.png"/>
+					</section>
+					<div ng-if="!formx.vba" class="row">
+						<h3>Note: Please Scan The QR Code and Pay Rs {{formx.PayAmount}}/- (If Qr Code Wont Works Pay It to 9711187234)</h3>
+						<br/>
+						<h3>Once You Have Paid  Rs {{formx.PayAmount}}/- for {{formx.Events[formx.formdata.event].Name}} Click on the confirm Payment Button Below, Clicking the Confirm Button won't confirm your entry to the Event, rather Paytm Payment will be manually verified by Prakriti Representative and a confirmation will be sent to {{formx.formdata.MemDetail[0].Email}}  </h3>
+						
+					</div>
+					 
+					<div ng-if="formx.vba" class="row">
+						<h3>Note: In order to make Cash Payment Please contact Prakriti Representatives</h3>
+						<br/>
+						<h3>Prakriti Representative is Requested to Write Their Name and Authorization Key To Succesfully Register an Entry</h3>
+						
+					</div>
+					<br/>
+					<section ng-if="formx.vba" class="col col-6">
+							<label class="input">
+								<i class="icon-append icon-user"></i>
+								<input ng-model='formx.formdata.repName' type="text" placeholder="Prakriti Representative Name">
+							</label>
+						</section>
+						<section ng-if="formx.vba" class="col col-6">
+								<label class="input">
+								<i class="icon-append icon-pencil"></i>
+								<input ng-model='formx.formdata.Auth' type="password" placeholder="Authorization Password">
+								</label>
+						</section>
+					 
+										
+				</fieldset>
+				<footer ng-if="formx.end">
+					<button type="button" ng-click="formx.PaymentVerify();" class="button">Confirm Payment</button>
+				</footer>
+			</form>
+			
+		</div>
+	</body>
+
+<!-- Mirrored from voky.com.ua/showcase/sky-forms/examples/demo-order.html? by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Dec 2016 19:48:02 GMT -->
+</html>

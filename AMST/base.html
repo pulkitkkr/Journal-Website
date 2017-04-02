@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Scientia Praecepta</title>
+	<meta name="description" content="Scientia Praecepta: Exploring the world of science is a series of journals of Physical Science, Chemical Science and Engineering Science and Technology " />
+	<meta name="keywords" content="Scientia Praecepta,journals,Ravista" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="apple-touch-icon" sizes="57x57" href="../fav/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../fav/apple-icon-60x60.png">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet"> 
+<link rel="apple-touch-icon" sizes="72x72" href="../fav/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../fav/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../fav/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../fav/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../fav/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../fav/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../fav/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="../fav/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../fav/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../fav/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../fav/favicon-16x16.png">
+<link rel="manifest" href="fav/manifest.json">
+<link rel="stylesheet" type="text/css" href="../css/demo.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<meta name="msapplication-TileColor" content="#ffffff">
+
+<meta name="msapplication-TileImage" content="fav/ms-icon-144x144.png">
+
+<meta name="theme-color" content="#ffffff">
+	<!-- Normalize -->
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<!-- Owl -->
+	<link rel="stylesheet" type="text/css" href="../css/owl.css">
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="../css/animate.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="../fonts/eleganticons/et-icons.css">
+
+	<!-- Main style -->
+	<link rel="stylesheet" type="text/css" href="../css/cardio.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+</head>
+
+<body>
+
+	<!-- Scripts -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
+	<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/jquery.scrollbox.min.js"></script>
+	<nav style="padding-top:1%; padding-bottom:0.2%; margin:0px" class="navbar">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header" >
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+							
+				<a class="navbar-brand" href="#"><div class="circle"><center><img class="adjust" src="../img/logo.png" style='z-index: 100;' data-active-url="../img/logo.png" width='115px' alt=""></center></div></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li style="margin:0px 1px;"><a  href="../index.html">Home</a></li>
+					<li style="margin:0px 1px;"><a href="">Journals</a></li>
+					<li style="margin:0px 1px;"><a href="">Issues/Volume</a></li>
+					<li style="margin:0px 1px;"><a href="">Contact Us</a></li> 
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<br/><br/><br/><br/><br/><br/>
+	<div ng-app="journals">
+		<div class="col-md-2 hidden-sm hidden-xs" style="z-index: 2">
+			
+		</div>
+		<div style="font-family: 'Times New Roman', Georgia, Serif; z-index: 2" ng-controller='sideCtrl as side' class="col-md-3">
+			<center>
+				<br/>
+				<h4 class="fontHead_invert">{{side.load.journalName}}</h4>
+				<img width="60%" style="margin: 5%;box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.35);" alt="{{side.load.journalName}}" ng-src="../img/MS/{{side.load.imgData}}.jpg">
+				<h5 class="fontHead_invert" style="margin: 0px">ISSN:&nbsp;&nbsp;&nbsp;<font class="fontHead_red">{{side.load.ISSN}}</font></h5>
+				<br/>
+				
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx">Open Access Journal</button>
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx">About The Journal</button>
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx ">Guidelines to Author</button>
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx ">Submit Your Paper</button>
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx ">Track Your Paper</button>
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx "><font style="position: relative;left: -12px">Copyright Agreement Form</font></button>				
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx ">Issues</button>
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx ">View Articles</button>				
+				<button type="button" width="100%" style="margin-bottom: 5px" class="btn btn-blue btn-blockx">Content</button>
+			</center>
+		</div>
+		<div ng-controller='midCtrl as mid' ng-init="" class="col-md-5" style="font-family: 'Times New Roman', Georgia, Serif; z-index: 2">
+
+			<center><h3 class="fontHead_invert"> {{mid.load.journalFullName}}</h3></center><br/>
+			<div class="col-xs-8">
+				<h4  class="fontHead_invert" style= "font-size: 20px;">Editor General: &nbsp;&nbsp;<font class="fontHead_red">{{mid.load.editorGeneral}}</font></h4>
+			</div>
+			<div class="col-xs-3">
+				<button type="button" ng-click="mid.listToggle()" width="100%" style="margin-bottom: 5px" class="btn btn-blue">{{mid.shower}} Editorial List</button>
+			</div>
+			<div class="col-xs-1">
+				
+			</div>
+			<br/><br/><br/>
+
+			<div class="animated" ng-class="{slideInUp: mid.listViewx, slideOutDown: !mid.listViewx }" ng-if="mid.listView" ng style="align:center;">
+				<br/>
+				<center><h4 class="fontHead_red">Editorial List: </h4></center>
+				<br/><br/>
+				<div ng-repeat="editors in mid.load.EditorialList">
+					<div class="row" >
+				 		<div class="col-xs-3">
+				 			<center><img width="100%" ng-src="{{editors.imgData}}"></center>	
+					 		 
+					 	</div>
+					 	<div  class="col-xs-3">
+					 		<center><h6 style=" display: relative; top:40px;">{{editors.desig}}</h6></center>
+					 	</div>
+				 		<div  class="col-xs-6">
+				 			<center><h6 style=" display: relative; top:40px;">{{editors.FullName}}</h6>	</center>
+				 		</div>
+				 	</div>
+				 	 <div class="row"><br/></div>
+				</div>
+				 
+			</div>
+			<br/>
+			<center><h4 class="fontHead_invert">Aim & Scope/ About The Journal</h4></center><br/></center>
+			<h4 ng-if="mid.load.description_first" class="regular" style= "font-size: 20px; text-align: justify; text-justify: inter-word;">{{mid.load.description_first}}</h4>
+			<h4 ng-if="mid.load.description_second" class="regular" style= "font-size: 20px; text-align: justify; text-justify: inter-word;">{{mid.load.description_second}}</h4>
+			<h4 ng-if="mid.load.description_third" class="regular" style= "font-size: 20px; text-align: justify; text-justify: inter-word;">{{mid.load.description_third}}</h4>
+		</div>
+		<div class="col-md-2 hidden-sm hidden-xs" style="z-index: 2">
+			
+		</div>
+	 <br/><br/><br/><br/><br/><br/><br/>
+		
+	</div>
+	<!--<footer>
+		<div class="B_barx" style="z-index: 9999999">
+			<div class="container" style="z-index: 99999999">
+				<div class="row" style="z-index: 99999999">
+					<div  class="col-md-3">
+						<center>
+							<span class="BotSpan"><a href="www.ravistasciencepublisher.com" target="_blank">Rivista Science Publisher</a></span>
+						</center>
+					</div>
+					<div class="col-md-2">
+						<center>
+							<span class="BotSpan"><a href="#intro">Scientia Praecepta</a></span>	
+						</center>
+					</div>
+					<div class="col-md-2">
+						<center>
+							<span class="BotSpan"><a href="" data-toggle="modal" data-target="#ulock"> Open Access</a> </span>
+						</center>
+					</div>
+					<div class="col-md-2">
+						<center>
+							<span class="BotSpan"><a target="_blank" href="roles/charges.pdf">Publication Charges</a></span>
+						</center>
+					</div>
+					<div class="col-md-2">
+						<center>
+							<span class="BotSpan"><a target="_blank" href="roles/ethics.pdf">Publication Ethics</a></span>
+						</center>
+					</div>
+					<div class="col-md-1">
+						<center>
+							<span class="BotSpan" ><a href="href="#" data-toggle="modal" data-target="#modal1"> Join Us</a></span>
+						</center>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+		</div>				
+		<div class="container">
+			
+			<div class="row">
+			 
+			<br/><br/>
+				<div class="col-sm-3"></div>
+				<div id="contact" class="col-sm-6 text-center-mobile">
+					<center><h3 class="white">Scientia Praecepta in association with Rivista Science Publisher</h3>
+					<br/>
+					<h5 class="light regular light-white"><a href="mailto:support@scientiapraecepta.com" >Email: support@scientiapraecepta.com</a></h5>
+					<br/><br/>
+					</center></center>
+
+				</div>
+				<div class="col-sm-3"></div>
+			</div>	
+
+		 
+	<div class="mobile-nav">
+		<ul>
+		</ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	</div>
+	</footer>-->
+	<script src="../js/owl.carousel.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/typewriter.js"></script>
+	<script src="../js/jquery.onepagenav.js"></script>
+	<script src="../js/crawler.js"></script>
+	<script src="../js/main.js"></script>
+</body>
+
+</html>
